@@ -1,7 +1,7 @@
 from sqlalchemy import Column, Integer, DateTime, ForeignKey, Numeric, Enum
 from sqlalchemy.orm import relationship
-from models.base import Base
-from models.enums import DataQualityEnum
+from .base import Base
+from .enums import DataQualityEnum
 
 class Price(Base):
     __tablename__ = 'prices'
@@ -15,4 +15,5 @@ class Price(Base):
 
     item = relationship("Item", back_populates="prices")
     store = relationship("Store", back_populates="prices")
+
     
