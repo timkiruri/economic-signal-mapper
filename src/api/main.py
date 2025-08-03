@@ -2,6 +2,7 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware  # controls which domains are allowed to talk to your backend API
 from src.api.routes.v1 import prices
 from src.api.routes.v1 import alert
+from src.api.routes.v1 import forecasts
 
 app = FastAPI(
     title="Economic Signal Mapper API",
@@ -16,6 +17,7 @@ app.add_middleware(
 )
 app.include_router(prices.router)
 app.include_router(alert.router)
+app.include_router(forecasts.router)
 
 @app.get("/")
 def read_root():
