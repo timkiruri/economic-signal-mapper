@@ -1,19 +1,16 @@
-from sqlalchemy import Column, Integer, DateTime, ForeignKey, Numeric, Enum
+from sqlalchemy import Column, Integer, ForeignKey, Numeric, DateTime
 from sqlalchemy.orm import relationship
-from .base import Base
-from .enums import DataQualityEnum
+from src.database.db import Base
 
 class Price(Base):
-    __tablename__ = 'prices'
+    __tablename__ = "prices"
 
-    id = Column(Integer, primary_key=True)
-    item_id = Column(Integer, ForeignKey('items.id'))
-    store_id = Column(Integer, ForeignKey('stores.id'))
-    value = Column(Numeric(10, 2), nullable=False)
-    date = Column(DateTime, nullable=False)
-    data_quality = Column(Enum(DataQualityEnum), default=DataQualityEnum.GOOD)
+    id = Column(Integer, primary_key=True, index=True)
+    item_id = Column(Integer, ForeignKey("products.id"))
+    store_id = Column(Integer, ForeignKey("retailers.id"))
+    value = Column(Numeric(10, 2))
+    date = Column(DateTime)
 
-    item = relationship("Item", back_populates="prices")
-    store = relationship("Store", back_populates="prices")
-
-    
+    # Optional relationships
+    product = relationship("Product", back_populates="prices")
+    retailer = relationship("Retailer", back_populates="prices")

@@ -1,25 +1,19 @@
 from fastapi import FastAPI
-from fastapi.middleware.cors import CORSMiddleware  # controls which domains are allowed to talk to your backend API
-from src.api.routes.v1 import prices
-from src.api.routes.v1 import alert
-from src.api.routes.v1 import forecasts
+from src.api.routes.v1.prices import router as prices_router 
+from src.api.routes.v1.products import router as products_router
+from src.api.routes.v1.categories import router as categories_router
+from src.api.routes.v1.retailers import router as retailers_router
+from src.api.routes.v1.forecast import router as forecast_router
 
-app = FastAPI(
-    title="Economic Signal Mapper API",
-    version="1.0.0"
-)
-app.add_middleware(
-    CORSMiddleware,
-    allow_origins=["*"],  # ["http://localhost:3000"] for frontend
-    allow_credentials=True,
-    allow_methods=["*"],
-    allow_headers=["*"],
-)
-app.include_router(prices.router)
-app.include_router(alert.router)
-app.include_router(forecasts.router)
+app = FastAPI()
 
-@app.get("/")
-def read_root():
-    return {"message": "Economic Signal Mapper API is running!"}
+app.include_router(prices_router, prefix="/api/v1/prices", tags=["Prices"])
+app.include_router(products_router, prefix="/api/v1/products", tags=["Products"])
+app.include_router(categories_router, prefix="/api/v1/categories", tags=["Categories"])
+app.include_router(retailers_router, prefix="/api/v1/retailers", tags=["Retailers"])
+app.include_router(forecast_router)
+
+
+
+
 

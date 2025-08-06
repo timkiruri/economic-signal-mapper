@@ -1,27 +1,32 @@
 from pydantic import BaseModel
-from typing import Optional
-from datetime import datetime
 
 class PriceResponse(BaseModel):
-    item_name: str
-    price: float
-    currency: str
-    category: str
-    store:str
-    region: str
-    timestamp: datetime
-    source_url: Optional[str]
-    data_quality: Optional[float] 
-    
-"""All Pydantic models inherit from this. It gives validation and auto docs."""
-class AlertResponse(BaseModel):
-    item_name: str
-    store: str
-    price_change: float
-    direction: str
-    threshold: float
-    timestamp: datetime
-    description: str
+    id: int
+    item_id: int
+    store_id: int
+    value: float
 
     class Config:
-        from_attributes = True
+        orm_mode = True
+
+class ProductResponse(BaseModel):
+    id: int
+    name: str
+
+    class Config:
+        orm_mode = True
+
+class CategoryResponse(BaseModel):
+    id: int
+    name: str
+
+    class Config:
+        orm_mode = True
+
+class RetailerResponse(BaseModel):
+    id: int
+    name: str
+
+    class Config:
+        orm_mode = True
+
