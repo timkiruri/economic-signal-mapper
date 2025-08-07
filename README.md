@@ -12,13 +12,25 @@ The following are the key features we are looking at when developing this platfo
 
 ## Data Sources
 ### Local Price Data
-In terms of local prices we considered the following:
-1. **Supermarkets**: Naivas, Quickmart, Carrefour, etc.
-2. 
+In terms of local prices we considered the following retail outlets:
+1. Niavas
+2. Quickmart
+3. Carrefour
 
 ### Global Economic Signals
 When considering global economic signals, we will look at:
 1. **Forex Rates**: USD/KES, EUR/KES, GBP/KES
-2. **Oil Prices**: Brent Crude, WTI
-3. **Commodities**: Wheat, Maize, Coffee, Tea prices
-4. **Economic Indicators**: US inflation, ECB rates, global market indices
+2. **Oil Prices**: Brent Crude
+
+## Quick Start
+The prerequisites for this project are:
+1. Python 3.9+
+2. Node.js 16+
+3. SQLAlchemy 2+
+
+## Installation
+1. Clone repository
+```bash
+git clone https://github.com/timkiruri/economic-signal-mapper.git
+cd economic-signal-mapper
+```
