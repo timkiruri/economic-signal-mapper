@@ -1,0 +1,28 @@
+from fastapi import FastAPI
+from src.api.routes.v1.prices import router as prices_router 
+from src.api.routes.v1.products import router as products_router
+from src.api.routes.v1.categories import router as categories_router
+from src.api.routes.v1.retailers import router as retailers_router
+from src.api.routes.v1.forecast import router as forecast_router
+from fastapi import FastAPI
+from fastapi.middleware.cors import CORSMiddleware
+from src.api.routes import router as api_router
+
+
+app = FastAPI()
+
+# Include all route files
+app.include_router(prices_router, prefix="/api/v1/prices", tags=["Prices"])
+app.include_router(products_router, prefix="/api/v1/products", tags=["Products"])
+app.include_router(categories_router, prefix="/api/v1/categories", tags=["Categories"])
+app.include_router(retailers_router, prefix="/api/v1/retailers", tags=["Retailers"])
+app.include_router(forecast_router, prefix="/api/v1/forecast", tags=["Forecast"])  
+app.include_router(api_router, prefix="/api")
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["http://localhost:3000", "http://localhost:3001"], 
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
